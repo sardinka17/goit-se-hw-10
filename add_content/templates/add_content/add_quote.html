@@ -1,0 +1,47 @@
+{% extends 'quotes/base.html'%}
+
+{% block content %}
+
+<div class="container mt-3">
+    <h2>Add Quote</h2>
+
+    {% if form.errors and form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {{form.non_field_errors}}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">
+                Author
+                {{ form.author }}
+            </label>
+            <span>{{ form.errors.author }}</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Tags
+                {{ form.tags }}
+            </label>
+            <span>{{ form.errors.tags }}</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Quote
+                {{ form.quote }}
+            </label>
+            <span>{{ form.errors.quote }}</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+
+
+{% endblock %}
